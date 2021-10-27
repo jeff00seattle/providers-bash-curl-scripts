@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [ -z "${ACCESS_TOKEN}" ]
+  then
+    echo "Missing ACCESS_TOKEN"; exit 1
+fi
+
+CURL_VERBOSE=""
+if [ ${VERBOSE} = true ]
+  then
+    CURL_VERBOSE="--verbose"
+fi
+
+CURL_CMD="curl \"${PROTOCOL}://${HOSTNAME}/${PATHNAME}\"
+  --request ${CURL_REQUEST}
+  ${CURL_VERBOSE}
+  --write-out 'HTTPSTATUS:%{http_code}'
+  --silent
+  --header \"authorization: Bearer ${ACCESS_TOKEN}\"
+  --header \"Content-Type: application/json\"
+  --data '{\"name\": \"${FOLDER_NAME}\", \"folder\": {}, \"@microsoft.graph.conflictBehavior\": \"fail\"}'
+"
+
+source ../../../shared/curl/curl_http_response.sh

@@ -1,0 +1,1 @@
+../../../shared/credentials/get_config_credentials_deploy.sh

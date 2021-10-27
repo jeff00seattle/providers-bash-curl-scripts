@@ -1,0 +1,1 @@
+../../../shared/helpers/get_search_parts.sh
